@@ -5,6 +5,7 @@ npm init -y
 npm install --save redux
 npm install --save-dev babel-cli babel-core babel-preset-es2015
 npm install --save-dev mocha chai chai-immutable immutable
+npm install --save uuid
 ```
 
 ## 数据结构
