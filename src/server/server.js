@@ -10,8 +10,14 @@ app.set('views',__dirname + '/views')
 app.set('view engine','ejs')
 app.use(express.static(rootPath + '/public'))
 
+var io = require("socket.io")(http)
+import { makeStore } from "./store.js"
+import listenWebSocket from "./io.js"
+const store = makeStore()
+listenWebSocket(io,store)
+
 app.get('/',(req,res)=>{
-  res.send("Hello World!")
+  res.render("index")
 })
 
 http.listen(3000,()=>{

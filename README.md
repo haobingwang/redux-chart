@@ -71,4 +71,9 @@ npm install -g babel-cli
 babel-node src/server/server.js
 ```
 
-babel-node 是 babel-cli 中的
+babel-node 来自包 babel-cli
+浏览器访问：http://localhost:3000
+
+```shell
+npm install --save socket.io
+```
