@@ -62,3 +62,13 @@ store = createStore
 store.getState()
 store.dispatch(action)
 store.subscribe(listener)
+
+## Express服务器和socktio
+
+```shell
+npm install --save express ejs
+npm install -g babel-cli
+babel-node src/server/server.js
+```
+
+babel-node 是 babel-cli 中的
