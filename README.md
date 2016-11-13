@@ -54,3 +54,11 @@ npm install --save uuid
   }
 }
 ```
+
+## redux
+
+store = createStore
+
+store.getState()
+store.dispatch(action)
+store.subscribe(listener)
