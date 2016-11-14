@@ -124,3 +124,6 @@ npm run testClient:watch
 ```shell
 npm install --save-dev react-addons-pure-render-mixin
 ```
+## 前端的 reducer 和 aciton
+
+后端的 reducer 之前已经写好了，他只负责新建房间和删除房间
