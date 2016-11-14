@@ -127,3 +127,7 @@ npm install --save-dev react-addons-pure-render-mixin
 ## 前端的 reducer 和 aciton
 
 后端的 reducer 之前已经写好了，他只负责新建房间和删除房间
+
+## 前端的 store
+
+前端有了 store 就可以将 index.js 文件内的 fakeState 移除，使用 store 的数据渲染页面
