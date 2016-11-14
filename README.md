@@ -77,3 +77,19 @@ babel-node 来自包 babel-cli
 ```shell
 npm install --save socket.io
 ```
+
+## Webpack
+
+```shell
+npm i -D webpack webpack-dev-server
+npm i -D babel-loader babel-preset-react react-hot-loader
+npm install --save react react-dom react-mixin react-redux socket.io-client
+```
+
+```shell
+# 启动 webpack-dev-server
+npm run start
+# 启动 后台服务器
+npm run startServer
+```
+访问 http://localhost:8080

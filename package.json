@@ -7,13 +7,17 @@
     "test": "test"
   },
   "scripts": {
+    "start": "webpack-dev-server",
+    "startServer": "babel-node src/server/server.js",
     "testServer": "mocha --compilers js:babel-core/register --require ./test/serverTestHelper.js ./test/server --recursive",
     "testServer:watch": "npm run testServer -- --watch"
   },
   "babel": {
     "presets": [
-      "es2015"
-    ]
+      "es2015",
+      "react"
+    ],
+    "plugins": ["react-hot-loader/babel"]
   },
   "keywords": [],
   "author": "",
@@ -28,8 +32,20 @@
     "express": "^4.14.0",
     "immutable": "^3.8.1",
     "mocha": "^3.1.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-mixin": "^3.0.5",
+    "react-redux": "^4.4.5",
     "redux": "^3.6.0",
     "socket.io": "^1.5.1",
-    "uuid": "^2.0.3"
+    "socket.io-client": "^1.5.1",
+    "uuid": "^2.0.3",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.7",
+    "babel-preset-react": "^6.16.0",
+    "react-hot-loader": "^3.0.0-beta.6"
   }
 }
