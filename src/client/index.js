@@ -7,12 +7,18 @@ import { fromJS, Map, List } from "immutable"
 
 import { Provider } from "react-redux"
 
-import { createStore } from "redux"
+import { createStore, applyMiddleware } from "redux"
+import { logger,socketMiddleware } from "./middleware"
 import rootReducer from "./reducer"
 import { setState, newMessage } from "./actionCreator"
 import { getInitialState, saveToStorage } from "./store"
 
-const store = createStore(rootReducer,getInitialState())
+const createStoreWithMiddleware = applyMiddleware(
+  logger,
+  socketMiddleware(socket)
+)(createStore)
+
+const store = createStoreWithMiddleware(rootReducer,getInitialState())
 
 socket.on('state',state => {
   store.dispatch(setState(state))
