@@ -3,7 +3,7 @@ import React,{ Component } from "react"
 import MessageList from "./MessageList"
 import InputBox from "./InputBox"
 import RoomList from "./RoomList"
-// import { newMessage, switchRoom, addRoom,removeRoom } from "../actionCreators"
+import { newMessage, switchRoom, addRoom,removeRoom } from "../actionCreator"
 
 class App extends Component {
     getCurrentRoomName(){
@@ -25,19 +25,32 @@ class App extends Component {
     }
 
     addRoom(){
+      var name = prompt("房间名称")
+  		if(!name) return alert("不能没有房间名称")
 
+  		this.props.dispatch( addRoom({
+  			name, owner: this.props.username
+  		}) )
     }
 
     removeRoom(){
+      this.props.dispatch(switchRoom( ))
 
+  		this.props.dispatch( removeRoom(
+  			this.props.currentRoom, this.props.username
+  		) )
     }
 
     sendMessage(message){
-
+      this.props.dispatch( newMessage({
+  			roomId: this.props.currentRoom,
+  			user: this.props.username,
+  			content: message
+  		}) )
     }
 
     render(){
-        const { currentRoom, rooms, username } = this.props
+        const { currentRoom, rooms, username, dispatch } = this.props
 
         return (
             <div className="flex-row">
@@ -45,7 +58,7 @@ class App extends Component {
                     <p>聊天室列表</p>
                     <RoomList rooms={ rooms }
                         currentRoom={currentRoom}
-                        switchRoom={ id => {'do something'}}
+                        switchRoom={ id => dispatch(switchRoom(id))}
                     />
                     <button className="btn color-2"
                         onClick={ this.addRoom.bind(this) }> + 创建聊天室</button>
@@ -73,5 +86,18 @@ class App extends Component {
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import reactMixin from "react-mixin";
 reactMixin.onClass(App, PureRenderMixin )
+
+import { connect } from 'react-redux'
+
+function mapStateToProps(state) {
+  return {
+    rooms: state.get('rooms'),
+    currentRoom: state.get('currentRoom'),
+    username: state.get('username'),
+    messages: state.get('messages')
+  }
+}
+
+export const ConnectedApp = connect(mapStateToProps)(App)
 
 export default App

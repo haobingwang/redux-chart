@@ -2,8 +2,10 @@ import { socket } from './io.js'
 
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
-import App from "./components/App"
+import { ConnectedApp } from "./components/App"
 import { fromJS, Map, List } from "immutable"
+
+import { Provider } from "react-redux"
 
 import { createStore } from "redux"
 import rootReducer from "./reducer"
@@ -41,13 +43,18 @@ var $app = document.getElementById('app')
 function render() {
   const fakeState = store.getState()
   ReactDOM.render(
-    <App rooms={fakeState.get('rooms')}
-      currentRoom={fakeState.get('currentRoom')}
-      username={fakeState.get('username')}
-      messages={fakeState.get('messages')}
-    />,$app
+    <Provider store={store}>
+      <ConnectedApp />
+    </Provider>,
+    $app
   )
 }
 
 // 当 store 发生改变时就会重新运行 render
-store.subscribe(render)
+// store.subscribe(render)
+
+render()
+
+store.subscribe(()=>{
+  saveToStorage(store.getState())
+})
