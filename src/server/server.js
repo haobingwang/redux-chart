@@ -11,8 +11,8 @@ app.set('view engine','ejs')
 app.use(express.static(rootPath + '/public'))
 
 var io = require("socket.io")(http)
-import { makeStore } from "./store.js"
-import listenWebSocket from "./io.js"
+import { makeStore } from "./store"
+import listenWebSocket from "./io"
 const store = makeStore()
 listenWebSocket(io,store)
 

@@ -131,3 +131,11 @@ npm install --save-dev react-addons-pure-render-mixin
 ## 前端的 store
 
 前端有了 store 就可以将 index.js 文件内的 fakeState 移除，使用 store 的数据渲染页面
+
+## 前端发送 action 到 server
+
+## redux 中间件
+
+## 后端处理前端发送过来的 action
+
+有 bug 
